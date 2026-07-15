@@ -31,13 +31,8 @@ by the Neural Amp Modeler project.
 Attribution and licensing
 
 Valla Amp Modeler GPU is an independent and unofficial derivative work based in part on NeuralAmpModelerPlugin and NeuralAmpModelerCore by Steven Atkinson.
-
 NeuralAmpModelerPlugin is Copyright (c) 2022 Steven Atkinson and is distributed under the MIT License.
-
 NeuralAmpModelerCore is Copyright (c) 2023 Steven Atkinson and is distributed under the MIT License.
-
 Modifications and GPU integration are Copyright (c) 2026 Francesco Valla / Valla Productions Original.
-
 Valla Amp Modeler GPU is not affiliated with, sponsored by, approved by, or endorsed by Steven Atkinson or by the official Neural Amp Modeler project.
-
 Complete copyright and license notices are included in ThirdPartyNotices.txt, distributed both with and inside the plug-in bundle.
