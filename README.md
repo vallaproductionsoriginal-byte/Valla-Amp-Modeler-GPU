@@ -10,8 +10,7 @@ It work only with A2 NAM profile.
 - `Valla Amp Modeler GPU.vst3`
 - `Valla Amp Modeler GPU.component`
 
-The bundles require macOS 15.0 or newer and the GPU Audio LTS v2 runtime.
-They are ad-hoc signed for local development and testing.
+The bundles require macOS 15.0 or newer.
 
 Install the VST3 and Audio Unit in:
 
