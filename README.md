@@ -1,6 +1,7 @@
 # Valla Amp Modeler GPU 0.7.11 
 
 Independent NAM-compatible GPU amp modeler by Valla Productions.
+
 It work only with A2 NAM profile.
 
 ## macOS arm64 artifacts
