@@ -18,6 +18,72 @@ Install the VST3 and Audio Unit in:
 - `~/Library/Audio/Plug-Ins/VST3/`
 - `~/Library/Audio/Plug-Ins/Components/`
 
+## macOS Security Notice
+
+> [!NOTE]
+> On first launch, macOS may block **Valla Amp Modeler GPU** or report that Apple cannot verify the developer.
+>
+> This warning does not automatically mean that the plug-in is unsafe. It appears because the current macOS build is distributed independently and is not yet signed and notarized through the Apple Developer Program.
+
+> [!IMPORTANT]
+> For your security, download the plug-in only from the official **GitHub Releases** page of this repository.
+
+### Installation
+
+Copy:
+
+```text
+Valla Amp Modeler GPU.vst3
+```
+
+to one of the following folders:
+
+```text
+/Library/Audio/Plug-Ins/VST3/
+```
+
+or, for the current user only:
+
+```text
+~/Library/Audio/Plug-Ins/VST3/
+```
+
+### Allow the plug-in on macOS
+
+Close your DAW, open **Terminal**, and run:
+
+```bash
+sudo xattr -rd com.apple.quarantine "/Library/Audio/Plug-Ins/VST3/Valla Amp Modeler GPU.vst3"
+```
+
+If you installed it in your user folder, run:
+
+```bash
+xattr -rd com.apple.quarantine "$HOME/Library/Audio/Plug-Ins/VST3/Valla Amp Modeler GPU.vst3"
+```
+
+When using `sudo`, macOS may ask for your password. Nothing will appear while typing it — this is normal.
+
+Restart your DAW and perform a full VST3 rescan.
+
+### If the plug-in is still blocked
+
+Apply a local ad-hoc signature:
+
+```bash
+sudo codesign --force --deep --sign - "/Library/Audio/Plug-Ins/VST3/Valla Amp Modeler GPU.vst3"
+```
+
+Then restart your DAW and scan the plug-in again.
+
+> [!TIP]
+> These commands affect only **Valla Amp Modeler GPU**. They do not disable Gatekeeper or the general security protections of your Mac.
+
+Apple notarization may be added in a future release. Until then, thank you for supporting a free and independent audio project.
+
+
+
+
 Identity:
 
 - bundle base: `com.vallaproductions.vallaampmodelergpu`
