@@ -1,5 +1,5 @@
 # Valla Amp Modeler GPU 0.7.11 
-
+![Valla Amp Modeler GPU interface](assets/screen1.png)
 Independent NAM-compatible GPU amp modeler by Valla Productions.
 
 It work only with A2 NAM profile.
