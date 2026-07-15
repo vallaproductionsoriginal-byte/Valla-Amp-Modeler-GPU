@@ -13,12 +13,6 @@ It work only with A2 NAM profile.
 The bundles require macOS 15.0 or newer and the GPU Audio LTS v2 runtime.
 They are ad-hoc signed for local development and testing.
 
-## Duplication hotfix
-
-This build preserves the requested NAM model when a DAW duplicates a channel
-and resets the new plug-in instance while its restored model is still loading.
-The duplicated channel no longer falls back permanently to the dry signal.
-
 Install the VST3 and Audio Unit in:
 
 - `~/Library/Audio/Plug-Ins/VST3/`
