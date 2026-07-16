@@ -64,7 +64,8 @@ The number of simultaneous FULL-mode instances depends on several factors, inclu
 ## Reference Performance
 
 On my system an **Apple M4 Max with a 14-core CPU**—Valla Amp Modeler GPU can run **48 = simultaneous FULL-mode instances with buffer at 64 (4.7ms), with each instance processing both a **NAM A2 profile and an IR**. 
-48 channel with this chain: Operator (synthesizer) + Valla Amp Modeler GPU at 64 loaded with NAM A2 profile and IR profile.
+
+48 channel with this chain: Operator (synthesizer) + Valla Amp Modeler GPU mode FULL, Buffer at 64 loaded with NAM A2 profile and IR profile.
 
 Beyond 48 simultaneous FULL-mode instances, real-time performance becomes increasingly unpredictable and should not be considered reliable. Audio dropouts, processing overloads, or instability may occur depending on the selected profiles, IR files, sample rate, DAW session, and overall system load.
 
