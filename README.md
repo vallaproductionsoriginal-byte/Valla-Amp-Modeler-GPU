@@ -320,6 +320,4 @@ Performance results are system-dependent and should not be interpreted as guaran
 Test the plug-in in a non-critical session before using it in production, and always keep backups of important projects.
 
 
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="cicciovalla" data-color="#5F7FFF" data-emoji="🤓"  data-font="Lato" data-text="Buy me a coffe" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
 
-Thanks you for your support!
