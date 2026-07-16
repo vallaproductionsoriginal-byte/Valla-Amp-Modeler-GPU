@@ -319,5 +319,12 @@ Performance results are system-dependent and should not be interpreted as guaran
 
 Test the plug-in in a non-critical session before using it in production, and always keep backups of important projects.
 
+## ☕ Support the Project
 
+Valla Amp Modeler GPU is developed and distributed free of charge.
 
+If you find the plugin useful and would like to support its continued development, you can buy me a coffee:
+
+[![Buy Me a Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/cicciovalla)
+
+Your support helps fund testing, maintenance, and future improvements. Thank you!
