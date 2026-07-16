@@ -1,6 +1,6 @@
 # Valla Amp Modeler GPU
 
-![Valla Amp Modeler GPU interface](assets/valla-amp-modeler-gpu.png)
+![Valla Amp Modeler GPU interface](assets/screen1.png)
 
 **Valla Amp Modeler GPU** is an independent, GPU-accelerated amp modeler based on NeuralAmpModelerCore and optimized for Apple Metal.
 
