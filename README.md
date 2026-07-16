@@ -65,7 +65,7 @@ The number of simultaneous FULL-mode instances depends on several factors, inclu
 
 On my system an **Apple M4 Max with a 14-core CPU**—Valla Amp Modeler GPU can run **48 = simultaneous FULL-mode instances with buffer at 64 (4.7ms), with each instance processing both a **NAM A2 profile and an IR**. 
 
-48 simultaneous FULL A2 + IR instances at a 64-sample buffer while substantially offloading NAM inference from the CPU, leaving CPU resources available for instruments, mixing, effects, and the rest of the DAW session.
+48 channels, each running one FULL NAM A2 profile and one IR at a 64-sample buffer, while substantially offloading NAM inference from the CPU and leaving more processing resources available for instruments, mixing, effects, and the rest of the DAW session.
 
 Beyond 48 simultaneous FULL-mode instances, real-time performance becomes increasingly unpredictable and should not be considered reliable. Audio dropouts, processing overloads, or instability may occur depending on the selected profiles, IR files, sample rate, DAW session, and overall system load.
 
