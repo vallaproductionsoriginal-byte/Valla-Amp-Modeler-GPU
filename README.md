@@ -319,12 +319,36 @@ Performance results are system-dependent and should not be interpreted as guaran
 
 Test the plug-in in a non-critical session before using it in production, and always keep backups of important projects.
 
-## ☕ Support the Project
+## ☕ Support & More Projects
 
 Valla Amp Modeler GPU is developed and distributed free of charge.
 
 If you find the plugin useful and would like to support its continued development, you can buy me a coffee:
 
-[![Buy Me a Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/cicciovalla)
+<p align="left">
+  <a href="https://www.buymeacoffee.com/cicciovalla">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+         alt="Buy Me a Coffee"
+         height="50">
+  </a>
+</p>
 
 Your support helps fund testing, maintenance, and future improvements. Thank you!
+
+### 🎹 Check Out My Other Music Apps
+
+While you're here, you can also check out my other music applications available on Google Play:
+
+<p align="left">
+  <a href="https://play.google.com/store/apps/developer?id=Francesco+Valla">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+         alt="View Francesco Valla apps on Google Play"
+         height="70">
+  </a>
+</p>
+
+Currently available:
+
+* **Harmony Engine Plus**
+* **Harmony Engine Lite**
+
