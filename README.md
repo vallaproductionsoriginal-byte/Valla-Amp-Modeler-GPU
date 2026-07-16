@@ -26,42 +26,65 @@ Valla Amp Modeler GPU provides two processing modes designed for different stage
 
 ### LITE Mode
 
-Use **LITE** mode when working with larger projects or when running multiple plug-in instances simultaneously.
+Use **LITE** mode when working with large projects or when running multiple plug-in instances simultaneously.
 
-LITE mode reduces the processing requirements of each instance, allowing the system to sustain a higher number of active amp models.
+LITE mode reduces the processing load of each instance, allowing the system to sustain a greater number of active amp models.
 
-Recommended for:
+LITE mode is recommended for:
 
 * Recording and arrangement
 * Large sessions
 * Multiple guitar or bass tracks
 * Real-time monitoring
+* Auditioning different NAM A2 profiles
 * Projects requiring many simultaneous plug-in instances
 
 ### FULL Mode
 
 Use **FULL** mode when maximum processing quality is required.
 
-Recommended for:
+FULL mode is recommended for:
 
-* Final sound selection
+* Final tone selection
 * Critical listening
 * Track rendering
-* Mixing and export
+* Mixing
+* Final export
 
-The number of simultaneous FULL instances that can be used depends on the selected model, audio buffer size, sample rate, host application, and available GPU resources.
+The number of simultaneous FULL-mode instances depends on several factors, including:
+
+* The selected NAM A2 profiles
+* The loaded IR files
+* Audio buffer size
+* Sample rate
+* Host application
+* Additional plug-ins in the session
+* Available CPU and GPU resources
+
+## Reference Performance
+
+On my system an **Apple M4 Max with a 14-core CPU**—Valla Amp Modeler GPU can run **48 simultaneous FULL-mode instances with buffer at 64 (4.7ms), with each instance processing both a **NAM A2 profile and an IR**.
+
+Beyond 48 simultaneous FULL-mode instances, real-time performance becomes increasingly unpredictable and should not be considered reliable. Audio dropouts, processing overloads, or instability may occur depending on the selected profiles, IR files, sample rate, DAW session, and overall system load.
+
+> [!NOTE]
+> This result is provided as a practical reference, not as a guaranteed instance count.
+>
+> Performance may vary between systems, projects, DAWs, NAM profiles, and IR files.
+
+For sessions requiring more simultaneous instances, use **LITE mode** or render completed tracks to audio once the desired NAM A2 profile and IR have been selected.
 
 ## Recommended Workflow
 
 For the most efficient production workflow:
 
 1. Load and audition NAM A2 profiles using **LITE** mode.
-2. Select the profile and IR that best suit the track.
+2. Select the NAM A2 profile and IR that best suit the track.
 3. Switch the final instance to **FULL** mode.
-4. Render, bounce, or freeze the processed track.
+4. Render, bounce, commit, or freeze the processed track.
 5. Disable or remove the live plug-in instance when it is no longer required.
 
-Rendering completed tracks reduces real-time GPU usage and makes additional processing resources available to the rest of the project.
+Rendering completed tracks reduces real-time processing usage and makes additional resources available to the rest of the project.
 
 ### Ableton Live Example
 
@@ -70,19 +93,22 @@ In Ableton Live:
 1. Select the track containing Valla Amp Modeler GPU.
 2. Right-click the track header.
 3. Select **Freeze Track**.
-4. After confirming the result, optionally select **Flatten** to convert the frozen track into audio.
+4. Listen to the frozen result and confirm that it sounds correct.
+5. Optionally select **Flatten** to convert the frozen track permanently into audio.
 
-Consider duplicating the original track before flattening if you want to preserve an editable version of the plug-in chain.
+> [!TIP]
+> Duplicate the original track before using **Flatten** if you want to preserve an editable version of the plug-in chain and its settings.
 
-The same principle can be applied in other DAWs using their respective **Freeze**, **Bounce**, **Render**, **Commit**, or **Print to Audio** functions.
+The same workflow can be used in other DAWs through their respective **Freeze**, **Bounce**, **Render**, **Commit**, or **Print to Audio** functions.
 
 ## Supported Content
 
-| Content type                  | Support       |
-| ----------------------------- | ------------- |
-| NAM A2 profiles               | Supported     |
-| Legacy or non-A2 NAM profiles | Not supported |
-| External IR files             | Supported     |
+| Content type        |       Support |
+| ------------------- | ------------: |
+| NAM A2 profiles     |     Supported |
+| Legacy NAM profiles | Not supported |
+| Non-A2 NAM profiles | Not supported |
+| External IR files   |     Supported |
 
 ## macOS Compatibility
 
@@ -92,9 +118,9 @@ The current release is built for **Apple Silicon Macs**.
 
 * Apple Silicon Mac
 * macOS 15.0 or newer
-* VST3- or Audio Unit-compatible host application
+* A VST3- or Audio Unit-compatible host application
 
-### Included Formats
+## Included Formats
 
 * `Valla Amp Modeler GPU.app`
 * `Valla Amp Modeler GPU.vst3`
@@ -132,7 +158,7 @@ Current-user installation:
 ~/Library/Audio/Plug-Ins/Components/
 ```
 
-Restart your DAW and perform a complete plug-in rescan after installation.
+After installation, restart your DAW and perform a complete plug-in rescan.
 
 ## macOS Security Notice
 
@@ -141,7 +167,7 @@ Restart your DAW and perform a complete plug-in rescan after installation.
 
 This warning does not automatically indicate that the plug-in is unsafe. It appears because the current macOS build is distributed independently and is not yet signed and notarized through the Apple Developer Program.
 
-For security, download the plug-in only from the official Releases section of this repository.
+For security, download the plug-in only from the official **Releases** section of this repository.
 
 ### Remove the Quarantine Attribute
 
@@ -198,4 +224,8 @@ Complete copyright notices, license texts, and third-party attributions are avai
 
 ## Disclaimer
 
-This software is provided without warranty. Test the plug-in in a non-critical session before using it in production, and always keep backups of important projects.
+This software is provided without warranty.
+
+Performance figures are based on the developer's test system and are not guaranteed on other hardware or in different DAW sessions.
+
+Test the plug-in in a non-critical session before using it in production, and always keep backups of important projects.
