@@ -8,16 +8,66 @@ It supports **NAM A2 model profiles** and external **Impulse Response (IR)** fil
 
 > [!IMPORTANT]
 > Valla Amp Modeler GPU processes **NAM A2 profiles only**.
->
 > Legacy NAM models and NAM profiles using architectures other than A2 are not supported.
+
+## Why GPU Acceleration?
+
+GPU acceleration is not primarily intended to reduce the latency of a single NAM instance. Its main advantage is to expand the total processing capacity available in large projects.
+
+In complex DAW sessions, the CPU often becomes the primary bottleneck while a significant amount of GPU processing power remains unused. By moving NAM A2 inference and IR convolution to the GPU, Valla Amp Modeler GPU makes use of these otherwise idle computational resources and preserves CPU capacity for:
+
+* Virtual instruments
+* Audio effects
+* Mixing and bus processing
+* Automation
+* Oversampling
+* Other real-time DAW operations
+
+The objective is not simply to make one amp model faster, but to distribute the processing workload more efficiently across the system.
+
+This can be particularly useful in large projects where CPU resources are already heavily occupied but GPU processing capacity is still available.
+
+## Performance Reference
+
+The plug-in has been tested on the following system:
+
+* **Computer:** MacBook Pro
+* **Processor:** Apple M4 Max, 14-core CPU
+* **Audio buffer:** 64 samples
+* **Processing mode:** FULL
+* **Simultaneous channels:** 48
+* **NAM processing:** One FULL NAM A2 profile per channel
+* **Cabinet processing:** One external IR per channel
+
+The system was able to run:
+
+> **48 simultaneous channels, each running one FULL NAM A2 profile and one external IR at a 64-sample buffer.**
+
+Beyond 48 simultaneous FULL instances, reliability became less consistent and depended on the selected models, IR files, host workload, and overall project configuration.
+
+This result should be considered a practical reference rather than a guaranteed performance specification.
+
+Actual performance depends on:
+
+* Apple Silicon model and GPU configuration
+* Selected NAM A2 profiles
+* Selected IR files
+* Audio buffer size
+* Sample rate
+* DAW and plug-in host
+* Project complexity
+* Other active GPU workloads
+* Other plug-ins and virtual instruments
 
 ## Features
 
 * GPU-accelerated NAM processing through Apple Metal
-* Support for **NAM A2 model profiles**
-* External cabinet **Impulse Response loading**
-* Dedicated **LITE** and **FULL** processing modes
-* VST3, Audio Unit, and standalone application formats
+* Support for NAM A2 model profiles
+* External cabinet Impulse Response loading
+* Dedicated LITE and FULL processing modes
+* VST3 plug-in
+* Audio Unit plug-in
+* Standalone application
 * Native Apple Silicon support
 
 ## Processing Modes
@@ -26,67 +76,48 @@ Valla Amp Modeler GPU provides two processing modes designed for different stage
 
 ### LITE Mode
 
-Use **LITE** mode when working with large projects or when running multiple plug-in instances simultaneously.
+Use **LITE mode** when working with larger projects or when running many plug-in instances simultaneously.
 
-LITE mode reduces the processing load of each instance, allowing the system to sustain a greater number of active amp models.
+LITE mode reduces the processing requirements of each instance, allowing the system to sustain a higher number of active amp models.
 
-LITE mode is recommended for:
+Recommended for:
 
-* Recording and arrangement
+* Recording
+* Arrangement
 * Large sessions
 * Multiple guitar or bass tracks
 * Real-time monitoring
-* Auditioning different NAM A2 profiles
+* Profile and IR auditioning
 * Projects requiring many simultaneous plug-in instances
 
 ### FULL Mode
 
-Use **FULL** mode when maximum processing quality is required.
+Use **FULL mode** when maximum processing quality is required.
 
-FULL mode is recommended for:
+Recommended for:
 
-* Final tone selection
+* Final sound selection
 * Critical listening
 * Track rendering
 * Mixing
-* Final export
+* Export
+* Final production work
 
-The number of simultaneous FULL-mode instances depends on several factors, including:
-
-* The selected NAM A2 profiles
-* The loaded IR files
-* Audio buffer size
-* Sample rate
-* Host application
-* Additional plug-ins in the session
-* Available CPU and GPU resources
-
-## Reference Performance
-
-On my system an **Apple M4 Max with a 14-core CPU**—Valla Amp Modeler GPU can run **48 = simultaneous FULL-mode instances with buffer at 64 (4.7ms), with each instance processing both a **NAM A2 profile and an IR**. 
-
-48 channels, each running one FULL NAM A2 profile and one IR at a 64-sample buffer, while substantially offloading NAM inference from the CPU and leaving more processing resources available for instruments, mixing, effects, and the rest of the DAW session.
-
-Beyond 48 simultaneous FULL-mode instances, real-time performance becomes increasingly unpredictable and should not be considered reliable. Audio dropouts, processing overloads, or instability may occur depending on the selected profiles, IR files, sample rate, DAW session, and overall system load.
-
-> [!NOTE]
-> This result is provided as a practical reference, not as a guaranteed instance count.
->
-> Performance may vary between systems, projects, DAWs, NAM profiles, and IR files.
-
-For sessions requiring more simultaneous instances, use **LITE mode** or render completed tracks to audio once the desired NAM A2 profile and IR have been selected.
+The number of simultaneous FULL instances that can be used depends on the selected model, IR file, audio buffer size, sample rate, host application, project complexity, and available GPU resources.
 
 ## Recommended Workflow
 
 For the most efficient production workflow:
 
-1. Load and audition NAM A2 profiles using **LITE** mode.
-2. Select the NAM A2 profile and IR that best suit the track.
-3. Switch the final instance to **FULL** mode.
-4. Render, bounce, commit, or freeze the processed track.
+1. Load and audition NAM A2 profiles using **LITE mode**.
+2. Select the NAM profile and IR that best suit the track.
+3. Switch the final instance to **FULL mode**.
+4. Render, bounce, freeze, commit, or print the processed track to audio.
 5. Disable or remove the live plug-in instance when it is no longer required.
 
-Rendering completed tracks reduces real-time processing usage and makes additional resources available to the rest of the project.
+Rendering completed tracks reduces real-time GPU usage and makes additional processing resources available to the rest of the project.
+
+This workflow is especially recommended in large sessions containing many amp-modeling instances.
 
 ### Ableton Live Example
 
@@ -95,38 +126,53 @@ In Ableton Live:
 1. Select the track containing Valla Amp Modeler GPU.
 2. Right-click the track header.
 3. Select **Freeze Track**.
-4. Listen to the frozen result and confirm that it sounds correct.
+4. Listen to the frozen result and verify that it sounds correct.
 5. Optionally select **Flatten** to convert the frozen track permanently into audio.
 
-> [!TIP]
-> Duplicate the original track before using **Flatten** if you want to preserve an editable version of the plug-in chain and its settings.
+Consider duplicating the original track before flattening if you want to preserve an editable version of the plug-in chain.
 
-The same workflow can be used in other DAWs through their respective **Freeze**, **Bounce**, **Render**, **Commit**, or **Print to Audio** functions.
+The same principle can be applied in other DAWs using their respective:
+
+* Freeze
+* Bounce
+* Render
+* Commit
+* Print to Audio
+
+functions.
 
 ## Supported Content
 
-| Content type        |       Support |
-| ------------------- | ------------: |
-| NAM A2 profiles     |     Supported |
-| Legacy NAM profiles | Not supported |
-| Non-A2 NAM profiles | Not supported |
-| External IR files   |     Supported |
+| Content type             | Support       |
+| ------------------------ | ------------- |
+| NAM A2 profiles          | Supported     |
+| Legacy NAM profiles      | Not supported |
+| Non-A2 NAM architectures | Not supported |
+| External IR files        | Supported     |
 
 ## macOS Compatibility
 
-The current release is built for **Apple Silicon Macs**.
+The current release is built for Apple Silicon Macs.
 
 ### Requirements
 
 * Apple Silicon Mac
 * macOS 15.0 or newer
-* A VST3- or Audio Unit-compatible host application
+* VST3- or Audio Unit-compatible host application
 
-## Included Formats
+### Included Formats
 
 * `Valla Amp Modeler GPU.app`
 * `Valla Amp Modeler GPU.vst3`
 * `Valla Amp Modeler GPU.component`
+
+## Download
+
+Download the latest build from the official GitHub Releases section:
+
+[Download Valla Amp Modeler GPU](https://github.com/vallaproductionsoriginal-byte/Valla-Amp-Modeler-GPU/releases)
+
+For security, download the plug-in only from this repository or its official Releases page.
 
 ## Installation
 
@@ -160,7 +206,11 @@ Current-user installation:
 ~/Library/Audio/Plug-Ins/Components/
 ```
 
-After installation, restart your DAW and perform a complete plug-in rescan.
+After installation:
+
+1. Restart your DAW.
+2. Perform a complete plug-in rescan.
+3. For the Audio Unit version, restart the Mac if the plug-in is not detected immediately.
 
 ## macOS Security Notice
 
@@ -169,7 +219,7 @@ After installation, restart your DAW and perform a complete plug-in rescan.
 
 This warning does not automatically indicate that the plug-in is unsafe. It appears because the current macOS build is distributed independently and is not yet signed and notarized through the Apple Developer Program.
 
-For security, download the plug-in only from the official **Releases** section of this repository.
+For security, download the plug-in only from the official Releases section of this repository.
 
 ### Remove the Quarantine Attribute
 
@@ -187,16 +237,53 @@ For a current-user VST3 installation:
 xattr -rd com.apple.quarantine "$HOME/Library/Audio/Plug-Ins/VST3/Valla Amp Modeler GPU.vst3"
 ```
 
-When using `sudo`, macOS may request your password. No characters will appear while entering it; this is normal.
+When using `sudo`, macOS may request your password.
 
-Restart your DAW and perform a complete VST3 rescan.
+No characters will appear while entering the password in Terminal. This is normal.
+
+After running the command:
+
+1. Restart your DAW.
+2. Perform a complete VST3 rescan.
+
+### Audio Unit Quarantine Removal
+
+For a system-wide Audio Unit installation:
+
+```bash
+sudo xattr -rd com.apple.quarantine "/Library/Audio/Plug-Ins/Components/Valla Amp Modeler GPU.component"
+```
+
+For a current-user Audio Unit installation:
+
+```bash
+xattr -rd com.apple.quarantine "$HOME/Library/Audio/Plug-Ins/Components/Valla Amp Modeler GPU.component"
+```
+
+After running the command, restart the DAW and rescan the Audio Unit plug-ins.
+
+### Standalone Application Quarantine Removal
+
+Run the following command, replacing the path if the application is installed somewhere else:
+
+```bash
+xattr -rd com.apple.quarantine "/Applications/Valla Amp Modeler GPU.app"
+```
 
 ### If the Plug-in Is Still Blocked
 
-Apply a local ad-hoc signature:
+Apply a local ad-hoc signature.
+
+For a system-wide VST3 installation:
 
 ```bash
 sudo codesign --force --deep --sign - "/Library/Audio/Plug-Ins/VST3/Valla Amp Modeler GPU.vst3"
+```
+
+For a current-user VST3 installation:
+
+```bash
+codesign --force --deep --sign - "$HOME/Library/Audio/Plug-Ins/VST3/Valla Amp Modeler GPU.vst3"
 ```
 
 Restart your DAW and scan the plug-in again.
@@ -208,13 +295,13 @@ Apple notarization may be added in a future release.
 
 ## Plug-in Identity
 
-* Bundle identifier: `com.vallaproductions.vallaampmodelergpu`
-* VST3 class ID: `EF9C4601-7760-4C18-B2D5-14B2DD37C370`
-* Audio Unit identity: `aufx` / `VAMG` / `VaPr`
+* **Bundle identifier:** `com.vallaproductions.vallaampmodelergpu`
+* **VST3 class ID:** `EF9C4601-7760-4C18-B2D5-14B2DD37C370`
+* **Audio Unit identity:** `aufx` / `VAMG` / `VaPr`
 
 ## Attribution and Licensing
 
-Valla Amp Modeler GPU is an independent and unofficial derivative work based in part on **NeuralAmpModelerPlugin** and **NeuralAmpModelerCore** by Steven Atkinson.
+Valla Amp Modeler GPU is an independent and unofficial derivative work based in part on NeuralAmpModelerPlugin and NeuralAmpModelerCore by Steven Atkinson.
 
 * NeuralAmpModelerPlugin is Copyright © 2022 Steven Atkinson and is distributed under the MIT License.
 * NeuralAmpModelerCore is Copyright © 2023 Steven Atkinson and is distributed under the MIT License.
@@ -222,12 +309,12 @@ Valla Amp Modeler GPU is an independent and unofficial derivative work based in 
 
 Valla Amp Modeler GPU is not affiliated with, sponsored by, approved by, or endorsed by Steven Atkinson or by the official Neural Amp Modeler project.
 
-Complete copyright notices, license texts, and third-party attributions are available in [`ThirdPartyNotices.txt`](ThirdPartyNotices.txt).
+Complete copyright notices, license texts, and third-party attributions are available in [ThirdPartyNotices.txt](ThirdPartyNotices.txt).
 
 ## Disclaimer
 
 This software is provided without warranty.
 
-Performance figures are based on the developer's test system and are not guaranteed on other hardware or in different DAW sessions.
+Performance results are system-dependent and should not be interpreted as guaranteed minimum or maximum instance counts.
 
 Test the plug-in in a non-critical session before using it in production, and always keep backups of important projects.
