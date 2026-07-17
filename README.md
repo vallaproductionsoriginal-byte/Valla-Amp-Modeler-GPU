@@ -33,19 +33,25 @@ The plug-in has been tested on the following system:
 
 * **Computer:** MacBook Pro
 * **Processor:** Apple M4 Max, 14-core CPU
-* **Audio buffer:** 64 samples
+* **Sample rate:** 48 kHz
 * **Processing mode:** FULL
-* **Simultaneous channels:** 48
-* **NAM processing:** One FULL NAM A2 profile per channel
-* **Cabinet processing:** One external IR per channel
+* **NAM processing:** One FULL NAM A2 profile per instance
+* **Cabinet processing:** One external IR per instance
 
-The system was able to run:
+### Test Results
 
-> **48 simultaneous channels, each running one FULL NAM A2 profile and one external IR at a 64-sample buffer.**
+|  DAW Buffer | Sample Rate | Simultaneous Instances  | VaM Buffer| VaM Mode|
+| ----------: | ----------: | ----------------------: | ---------:| --------:
+|  64 samples |      48 kHz |           48 instances  |         64|     FULL|  
+| 128 samples |      48 kHz |           75 instances  |        128|     FULL|
+|  64 samples |      48 kHz |           75 instances  |         64|     LITE|
+| 128 samples |      48 kHz |           100 instances |        128|     LITE|
 
-Beyond 48 simultaneous FULL instances, reliability became less consistent and depended on the selected models, IR files, host workload, and overall project configuration.
+Each instance was running one **FULL NAM A2 profile** together with one **external IR**.
 
-This result should be considered a practical reference rather than a guaranteed performance specification.
+Beyond the reported instance counts, reliability may become less consistent depending on the selected NAM profiles, IR files, DAW workload, other active plug-ins, and overall project configuration.
+
+These results should be considered practical performance references rather than guaranteed specifications.
 
 Actual performance depends on:
 
@@ -58,6 +64,14 @@ Actual performance depends on:
 * Project complexity
 * Other active GPU workloads
 * Other plug-ins and virtual instruments
+
+> [!IMPORTANT]
+> **Set the plug-in processing buffer to the same value used by your DAW.**
+>
+> A mismatch between the DAW buffer size and the plug-in buffer may currently cause unexpected CPU spikes. Matching both buffer values is the recommended temporary workaround.
+>
+> This is a known issue and will be addressed in a future update.
+
 
 ## Features
 
@@ -149,6 +163,7 @@ functions.
 | Legacy NAM profiles      | Not supported |
 | Non-A2 NAM architectures | Not supported |
 | External IR files        | Supported     |
+
 
 ## macOS Compatibility
 
