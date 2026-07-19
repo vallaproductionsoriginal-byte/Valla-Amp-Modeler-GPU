@@ -19,7 +19,7 @@ The processing engine can be selected directly from the plug-in interface.
 
 ### GPU Processing
 
-GPU mode processes NAM inference and IR convolution through Apple Metal.
+GPU mode processes **NAM A2 inference through Apple Metal**, while **Impulse Response convolution is always processed on the CPU**.
 
 It supports both processing quality modes:
 
@@ -66,7 +66,7 @@ Its main advantage is to expand the total processing capacity available in large
 
 In complex DAW sessions, the CPU often becomes the primary bottleneck while a significant amount of GPU processing power remains unused.
 
-By moving NAM A2 inference and IR convolution to the GPU, Valla Amp Modeler GPU makes use of these otherwise idle computational resources and preserves CPU capacity for:
+By moving NAM A2 inference to the GPU while keeping IR convolution on the CPU, Valla Amp Modeler GPU makes use of otherwise idle GPU resources and reduces the CPU workload required by the NAM model. This preserves additional CPU capacity for:
 
 * Virtual instruments
 * Audio effects
@@ -87,7 +87,7 @@ The GPU engine has been tested on the following system:
 * **Processor:** Apple M4 Max, 14-core CPU
 * **Sample rate:** 48 kHz
 * **NAM processing:** One NAM A2 profile per instance
-* **Cabinet processing:** One external IR per instance
+* **Cabinet processing:** One external IR per instance, processed on the CPU
 
 ### Test Results
 
@@ -98,7 +98,7 @@ The GPU engine has been tested on the following system:
 |  64 samples |      48 kHz |           75 instances |         64 |     LITE |
 | 128 samples |      48 kHz |          100 instances |        128 |     LITE |
 
-Each instance was running one **NAM A2 profile** together with one **external IR**.
+Each instance was running one **NAM A2 profile** together with one **external IR processed on the CPU**.
 
 Beyond the reported instance counts, reliability may become less consistent depending on:
 
@@ -136,6 +136,7 @@ Actual performance depends on:
 
 * Selectable CPU and GPU processing
 * GPU-accelerated NAM processing through Apple Metal
+* CPU-based Impulse Response convolution in both CPU and GPU modes
 * Zero reported additional plug-in latency in CPU mode
 * Support for NAM A2 model profiles
 * External cabinet Impulse Response loading
@@ -192,6 +193,7 @@ The number of simultaneous FULL instances that can be used depends on:
 * Host application
 * Project complexity
 * Available GPU resources
+* Available CPU resources for IR processing
 
 ## Recommended Workflow
 
@@ -266,7 +268,7 @@ When the button becomes available again, the reset and resource reload process h
 | NAM A2 profiles          | Supported                        |
 | Legacy NAM profiles      | Not supported                    |
 | Non-A2 NAM architectures | Not supported                    |
-| External IR files        | Supported                        |
+| External IR files        | Supported — processed on the CPU |
 | CPU processing           | Supported in LITE mode           |
 | GPU processing           | Supported in LITE and FULL modes |
 
