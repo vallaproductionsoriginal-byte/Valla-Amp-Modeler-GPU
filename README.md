@@ -13,7 +13,7 @@ It supports **NAM A2 model profiles** and external **Impulse Response (IR)** fil
 
 ## CPU and GPU Processing
 
-Starting with the latest **RC release**, Valla Amp Modeler GPU can process audio using either the **CPU** or the **GPU**.
+Starting with the latest **beta_V2 release**, Valla Amp Modeler GPU can process audio using either the **CPU** or the **GPU**.
 
 The processing engine can be selected directly from the plug-in interface.
 
