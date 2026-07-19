@@ -449,7 +449,7 @@ Valla Amp Modeler GPU is developed and distributed free of charge.
 
 If you find the plug-in useful and would like to support its continued development, you can buy me a coffee:
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-Support_Development-FFDD00?style=for-the-badge\&logo=buy-me-a-coffee\&logoColor=000000)](https://buymeacoffee.com/vallaproductionsoriginal)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-Support_Development-FFDD00?style=for-the-badge\&logo=buy-me-a-coffee\&logoColor=000000)](https://buymeacoffee.com/cicciovalla)
 
 Your support helps fund testing, maintenance, and future improvements. Thank you!
 
